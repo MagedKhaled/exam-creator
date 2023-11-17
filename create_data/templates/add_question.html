@@ -1,0 +1,81 @@
+{% extends 'layouts/base.html' %} {% load static %} {% block title %} Subject
+Creator {% endblock %} {% block body %}
+
+<form method="post" class="form-control m-auto mt-5 px-5 w-50">
+  {% csrf_token %}
+  <h1 class="text-center">subject Name</h1>
+  <div class="">
+    <h2 class="mb-5">Create Question</h2>
+    <select class="form-select" name="chapter" id="chapterName">
+        <option selected>Chapter name</option>
+      <option value="x">x</option>
+      <option value="y">y</option>
+      <option value="z">z</option>
+    </select>
+  </div>
+
+  <div class="py-4">
+    <textarea
+    style="resize: both; width:100%;"
+      class="form-text d-block"
+      name="question"
+      id="question"
+      rows="3"
+      placeholder="Question"
+    ></textarea>
+  </div>
+
+  <div class="py-4">
+    <input
+      class="form-control"
+      type="text"
+      id="true_answer"
+      name="true_answer"
+      placeholder="True answer"
+    />
+  </div>
+
+  <div id="wrong_answer_container" class="form-control">
+    <div class="input-group mb-3">
+      <input
+        class="form-control"
+        id="wrong_answer"
+        type="text"
+        placeholder="Wrong answer"
+      />
+        <button
+
+          class="btn btn-success"
+          type="button"
+          onclick="addAnswer(event)"
+        >
+          add
+        </button>
+      <span class="col-12 text-danger"></span>
+    </div>
+  </div>
+
+  <div class="my-4">
+    <select class="form-select" name="difficulty" id="difficulty" required>
+    <option selected>Choose Difficulty</option>
+      <option value="simple">simple</option>
+      <option value="difficult">difficult</option>
+    </select>
+  </div>
+
+  <div class="my-4">
+    <select class="form-select" name="objective" id="objective">
+        <option selected>Choose Objective</option>
+
+      <option value="reminding">reminding</option>
+      <option value="understanding">understanding</option>
+      <option value="creativity">creativity</option>
+    </select>
+  </div>
+
+  <center>
+    <button class="btn btn-success mb-5 mt-4 px-5">Add Question</button>
+  </center>
+</form>
+
+{% endblock %}

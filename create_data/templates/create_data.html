@@ -1,0 +1,46 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block title %} Subject Creator {% endblock %}
+
+{% block body %} 
+
+<form method="post" class="form-control m-auto mt-5 px-5 w-50">
+    {% csrf_token %}
+    <h1 class="text-center">Create new subject</h1> 
+    <div class="py-4">
+      <input
+        class="form-control"
+        type="text"
+        name="subject_name"
+        placeholder="Subject Name"
+        required
+      />
+    </div>
+  
+    <div id="chapterContainer" class="form-control">
+      <div class="input-group mb-3">
+        <input
+          class="form-control"
+          type="text"
+          placeholder="Chapter Name"
+        />
+          <button
+  
+            class="btn btn-success"
+            type="button"
+            onclick="addChapter(event)"
+          >
+            Add
+          </button>
+        <span class="col-12 text-danger"></span>
+      </div>
+    </div>
+  
+    <center>
+      <button class="btn btn-success mb-5 mt-4 px-5">Create Subject</button>
+    </center>
+  </form>
+
+
+{% endblock %}
