@@ -1,0 +1,84 @@
+{% extends 'layouts/base.html' %} {% load static %} {% block title %} Subject
+Creator {% endblock %} {% block body %}
+<div class="form-control w-75 m-auto mt-5">
+  <div class="my-5">
+    <table class="table text-center table-striped table-bordered">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Total</th>
+          <th scope="col">rate</th>
+          <th scope="col">required</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for key,value in question_states.items %}
+
+        <tr>
+          {% if key == 'd' %}
+          <th scope="row">Difficult</th>
+          {% elif key == 's' %}
+          <th scope="row">Simple</th>
+          {% elif key == 'r' %}
+          <th scope="row">Reminding</th>
+          {% elif key == 'u' %}
+          <th scope="row">Understanding</th>
+          {% elif key == 'c' %}
+          <th scope="row">Creative</th>
+          {% else %}
+          <th scope="row">Chapter {{key}}</th>
+          {% endif %}
+
+          <td>{{ value.0 }}</td>
+          <td>{{ value.1 }}</td>
+          <td>{{ value.2 }}</td>
+        </tr>
+
+        {% endfor %}
+        <tr>
+          <th>Score</th>
+          <td colspan="3">{{score}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ul>
+    {% for question in questions %}
+    <li class="form-control my-5">
+      <div class="d-flex flex-row justify-content-between m-3">
+        <div class="w-75">
+          <h5>{{question.content}}</h5>
+          <div>
+            <ul>
+              {% for choice in question.Choices.all %} 
+              {% if choice.state == 't'%}
+              <li class="text-success">{{choice.content}}</li>
+              {% else %}
+              <li>{{choice.content}}</li>
+              {% endif %} {% endfor %}
+            </ul>
+          </div>
+        </div>
+        <div class="w-25">
+          <table class="table table-bordered">
+            <tr>
+              <th scope="col">Chapter</th>
+              <td>{{question.chapter.name}}</td>
+            </tr>
+            <tr>
+              <th scope="col">Difficulty</th>
+              <td>{{question.difficulty}}</td>
+            </tr>
+            <tr>
+              <th scope="col">Objective</th>
+              <td>{{question.objective}}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}

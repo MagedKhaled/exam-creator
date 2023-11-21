@@ -103,3 +103,6 @@ const handleAddQuestion = function (e) {
     errorLabel.innerText = "you must add at least 3 wrong answers! ";
   }
 };
+
+
+

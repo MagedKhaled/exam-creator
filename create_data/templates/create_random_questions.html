@@ -1,0 +1,37 @@
+{% extends 'layouts/base.html' %} {% load static %} {% block title %} Subject
+Creator {% endblock %} {% block body %}
+
+
+{% for question in questions %}
+<div class="py-3" style="border: 1px solid black;">
+    <div class="ps-2">
+        <h2>
+            {{question.chapter.name}}
+        </h2>
+        <h3>{{question.content}}</h3>
+        <span>{{question.difficulty}}</span>
+        <span>{{question.objective}}</span>
+    </div>
+    
+    {% for choice in question.Choices.all %}
+    
+    <div class="ps-5 py-2">
+        {% if choice.state == 't' %}
+        <div class="text-success">
+            {{choice.content}}
+        </div>
+        {% else %}
+        <div>
+            {{choice.content}}
+        </div>
+        {% endif %}
+    </div>
+    
+    
+    {% endfor %}
+    
+</div>
+{% endfor %}
+
+
+{% endblock %}

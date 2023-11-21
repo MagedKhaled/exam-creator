@@ -1,7 +1,6 @@
 import random
-number_questions = 100
 
-from rateClasses import Question
+from genetic.rateClasses import Rate,Question
 
 
 class Node:
@@ -38,14 +37,14 @@ class Node:
         print('\t'*self.level,self.rate.totalScore)
 
     def startInherit(self,node):
-        gen1 = random.sample(self.rate.questions,int(number_questions/2))
-        gen2 = random.sample(node.rate.questions,int(number_questions/2))
+        gen1 = random.sample(self.rate.questions,int(Tree.number_questions/2))
+        gen2 = random.sample(node.rate.questions,int(Tree.number_questions/2))
         newGen = list(set(gen1+gen2))
-        difference = number_questions - len(newGen)
+        difference = Tree.number_questions - len(newGen)
         while difference > 0:
-            subGen = random.sample(Question.questions,difference)
+            subGen = random.sample(Rate.questions,difference)
             newGen = list(set(newGen+subGen))
-            difference = number_questions - len(newGen)
+            difference = Tree.number_questions - len(newGen)
 
         self.rate.changeQuestions(newGen)
         
@@ -55,10 +54,26 @@ class Node:
 
 
 class Tree:
-    def __init__(self,rootNode) -> None:
-        self.rootNode = rootNode
+    number_nodes = 100
+    number_questions = 100
+
+    def __init__(self,exam_requirements) -> None:
+        
+        rate = Rate(Tree.number_questions,exam_requirements)
+        self.rootNode = Node(rate,rootNode=True)
+        
         self.lastNodes = [self.rootNode]
         self.maxLevel = 0
+
+        for i in range(Tree.number_nodes):
+            rate = Rate(Tree.number_questions,exam_requirements)
+            node = Node(rate)
+            self.addNode(node)
+            
+        self.sortTree()
+
+
+        
         
 
     def addNode(self,node):
@@ -102,9 +117,10 @@ class Tree:
         node2.rate = switcher
 
 
-    def startInherit(self):
-        self.makeNodeInherit(self.rootNode)
-        self.sortTree()
+    def startInherit(self,number_inherit):
+        for i in range(number_inherit):
+            self.makeNodeInherit(self.rootNode)
+            self.sortTree()
 
     def makeNodeInherit(self,node):
         if node.childL :

@@ -11,10 +11,8 @@
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light px-5">
-      <a class="navbar-brand" href="#">Exam Creator</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+      <a class="navbar-brand">Exam Creator</a>
+      
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           
@@ -24,6 +22,10 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'create.question' %}">Create Questions</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'create.exam' %}">Create Exam</a>
           </li>
         </ul>
       </div>
@@ -35,6 +37,7 @@
     <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js'%}"></script>
     <script src="{% static 'scripts/addChapter.js' %}"></script>
     <script src="{% static 'scripts/addAnswer.js' %}"></script>
+    <script src="{% static 'scripts/addExam.js' %}"></script>
 
   </body>
 </html>
