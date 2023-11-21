@@ -8,7 +8,7 @@
 <form method="post" class="form-control m-auto mt-5 px-5 w-50">
     {% csrf_token %}
     <h1 class="text-center">Create new subject</h1> 
-    <div class="py-4">
+    <div class="pb-4">
       <input
         class="form-control"
         type="text"
@@ -36,9 +36,18 @@
         <span class="col-12 text-danger"></span>
       </div>
     </div>
+
+    <div>
+      <span id="errorLabelCh" class="text-danger">
+      </span>
+
+      <span id="messageLabelCh" class="text-success">
+        {{message}}
+      </span>
+    </div>
   
     <center>
-      <button class="btn btn-success mb-5 mt-4 px-5">Create Subject</button>
+      <button class="btn btn-success mb-5 mt-4 px-5" onclick="handleAddSubject(event)">Create Subject</button>
     </center>
   </form>
 

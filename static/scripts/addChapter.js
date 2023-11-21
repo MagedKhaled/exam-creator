@@ -1,3 +1,17 @@
+const removeMessageCh = function () {
+  const messageElement = document.getElementById("messageLabelCh");
+
+  function changeContent() {
+    messageElement.textContent = "";
+  }
+  setTimeout(changeContent, 10000);
+};
+
+if (window.location.href === 'http://127.0.0.1:8000/create/subject/') {
+
+  removeMessageCh();
+}
+
 const removeChapter = function (e) {
   listChapters = listChapters.filter(
     (chapter) => chapter !== e.target.parentElement.children[0].value
@@ -7,6 +21,7 @@ const removeChapter = function (e) {
 let listChapters = [];
 const addChapter = function (e) {
   let originalElement = e.target.parentElement;
+
   if (originalElement.children[0].value.length > 2) {
     if (!listChapters.includes(originalElement.children[0].value)) {
       originalElement.children[2].innerText = "";
@@ -32,6 +47,17 @@ const addChapter = function (e) {
       "chapter name must be at least 3 characters ";
   }
 };
+
+
+
+const handleAddSubject = function (e) {
+  if (listChapters.length < 1) {
+    e.preventDefault();
+    errorLabel = document.getElementById("errorLabelCh");
+    errorLabel.innerText = "you must add at least 1 Chapter! ";
+  }
+};
+
 
 
 

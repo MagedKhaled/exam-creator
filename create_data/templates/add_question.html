@@ -3,14 +3,21 @@ Creator {% endblock %} {% block body %}
 
 <form method="post" class="form-control m-auto mt-5 px-5 w-50">
   {% csrf_token %}
-  <h1 class="text-center">subject Name</h1>
+  <h1 class="mb-5">Create Question</h1>
+
   <div class="">
-    <h2 class="mb-5">Create Question</h2>
-    <select class="form-select" name="chapter" id="chapterName">
-        <option selected>Chapter name</option>
-      <option value="x">x</option>
-      <option value="y">y</option>
-      <option value="z">z</option>
+    <select class="form-select" name="subject" id="subjectName" onchange="chooseSubject(event)" required>
+        <option selected value="">subject name</option>
+      {% for subject in subjects %}
+      
+      <option value={{subject.id}}>{{subject.name}}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <div class="">
+    <select class="form-select" name="chapter" id="chapterName" hidden required>
+        <option selected value="">Chapter name</option>
     </select>
   </div>
 
@@ -22,6 +29,7 @@ Creator {% endblock %} {% block body %}
       id="question"
       rows="3"
       placeholder="Question"
+      required
     ></textarea>
   </div>
 
@@ -32,6 +40,7 @@ Creator {% endblock %} {% block body %}
       id="true_answer"
       name="true_answer"
       placeholder="True answer"
+      required
     />
   </div>
 
@@ -57,24 +66,33 @@ Creator {% endblock %} {% block body %}
 
   <div class="my-4">
     <select class="form-select" name="difficulty" id="difficulty" required>
-    <option selected>Choose Difficulty</option>
-      <option value="simple">simple</option>
-      <option value="difficult">difficult</option>
+    <option selected value="">Choose Difficulty</option>
+      <option value="s">simple</option>
+      <option value="d">difficult</option>
     </select>
   </div>
 
   <div class="my-4">
-    <select class="form-select" name="objective" id="objective">
-        <option selected>Choose Objective</option>
+    <select class="form-select" name="objective" id="objective" required>
+        <option selected value="">Choose Objective</option>
 
-      <option value="reminding">reminding</option>
-      <option value="understanding">understanding</option>
-      <option value="creativity">creativity</option>
+      <option value="r">reminding</option>
+      <option value="u">understanding</option>
+      <option value="c">creativity</option>
     </select>
   </div>
 
+  <div>
+    <span id="errorLabel" class="text-danger">
+
+    </span>
+    <span id="messageLabel" class="text-success">
+      {{massage}}
+    </span>
+  </div>
+
   <center>
-    <button class="btn btn-success mb-5 mt-4 px-5">Add Question</button>
+    <button class="btn btn-success mb-5 mt-4 px-5" onclick="handleAddQuestion(event)">Add Question</button>
   </center>
 </form>
 
