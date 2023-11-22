@@ -54,7 +54,6 @@ const addAnswer = function (e) {
 const chooseSubject = function (e) {
   subject = document.getElementById("subjectName").value;
   chapterSelect = document.getElementById("chapterName");
-  chapterSelect.classList.add('mt-3')
 
   url = `/create/get/chapters/${subject}/`;
 
@@ -74,7 +73,7 @@ const chooseSubject = function (e) {
       })
       .then((data) => {
         chapterSelect.innerHTML = "";
-        chapterSelect.classList.add = "mt-3";
+        chapterSelect.classList.add("mt-3");
         const option = document.createElement("option");
         option.value = "";
         option.textContent = "Chapter Name";

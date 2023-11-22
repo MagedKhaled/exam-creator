@@ -1,0 +1,20 @@
+
+.width-sm{
+    width: 30%;
+}
+
+@media (max-width: 576px) {
+    .font-sm{
+      font-size: 10px;
+    }
+
+    .select-font-sm{
+        font-size: 10px;
+    }
+
+    .width-sm{
+        width: 50%;
+    }
+  }
+  
+

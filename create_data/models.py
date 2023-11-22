@@ -1,7 +1,6 @@
 from django.db import models
 
 
-
 class Subject(models.Model):
     name = models.CharField(max_length=50)
     
@@ -42,5 +41,4 @@ class Choice(models.Model):
     content = models.CharField(max_length=1000)
     state = models.CharField(max_length = 1, choices = STATE_CHOICES)
     question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='Choices')
-
 

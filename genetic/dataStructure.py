@@ -4,7 +4,7 @@ from genetic.rateClasses import Rate,Question
 
 
 class Node:
-    def __init__(self,rate,rootNode=False) -> None:
+    def __init__(self,rate,number_questions,rootNode=False) -> None:
         self.childL = None
         self.childR = None
         self.sibling = None
@@ -12,6 +12,7 @@ class Node:
         self.rootNode = rootNode
         self.rate = rate
         self.level = 0
+        self.number_questions = number_questions
         
 
     def addChild(self,child):
@@ -37,14 +38,14 @@ class Node:
         print('\t'*self.level,self.rate.totalScore)
 
     def startInherit(self,node):
-        gen1 = random.sample(self.rate.questions,int(Tree.number_questions/2))
-        gen2 = random.sample(node.rate.questions,int(Tree.number_questions/2))
+        gen1 = random.sample(self.rate.questions,int(self.number_questions/2))
+        gen2 = random.sample(node.rate.questions,int(self.number_questions/2))
         newGen = list(set(gen1+gen2))
-        difference = Tree.number_questions - len(newGen)
+        difference = self.number_questions - len(newGen)
         while difference > 0:
             subGen = random.sample(Rate.questions,difference)
             newGen = list(set(newGen+subGen))
-            difference = Tree.number_questions - len(newGen)
+            difference = self.number_questions - len(newGen)
 
         self.rate.changeQuestions(newGen)
         
@@ -54,20 +55,19 @@ class Node:
 
 
 class Tree:
-    number_nodes = 100
-    number_questions = 100
 
-    def __init__(self,exam_requirements) -> None:
-        
-        rate = Rate(Tree.number_questions,exam_requirements)
-        self.rootNode = Node(rate,rootNode=True)
+    def __init__(self,exam_requirements,number_nodes,number_questions) -> None:
+        self.number_nodes = number_nodes
+        self.number_questions = number_questions
+        rate = Rate(self.number_questions,exam_requirements)
+        self.rootNode = Node(rate,self.number_questions,rootNode=True)
         
         self.lastNodes = [self.rootNode]
         self.maxLevel = 0
 
-        for i in range(Tree.number_nodes):
-            rate = Rate(Tree.number_questions,exam_requirements)
-            node = Node(rate)
+        for i in range(self.number_nodes):
+            rate = Rate(self.number_questions,exam_requirements)
+            node = Node(rate,self.number_questions)
             self.addNode(node)
             
         self.sortTree()

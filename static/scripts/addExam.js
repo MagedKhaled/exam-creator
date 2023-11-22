@@ -46,7 +46,9 @@ const chooseSubjectForExam = function (e) {
         attrLabel.innerText = "Total Questions";
         attrLabel.classList.add("btn");
         attrLabel.classList.add("btn-dark");
-        attrLabel.style.width = "200px";
+        attrLabel.classList.add("font-sm");
+        attrLabel.classList.add("width-sm");
+
 
         container.classList.add("input-group");
         container.classList.add("my-1");
@@ -54,7 +56,8 @@ const chooseSubjectForExam = function (e) {
 
         numQuestions.name = "totalQuestions";
         numQuestions.id = "totalQuestions";
-        attrLabel.for = "totalQuestions"
+        attrLabel.setAttribute("for", "totalQuestions");
+
         numQuestions.placeholder = "Total number of questions 10:1000";
         numQuestions.value = 100;
         numQuestions.type = "number";
@@ -62,6 +65,7 @@ const chooseSubjectForExam = function (e) {
         numQuestions.max = "1000";
         numQuestions.required = true;
         numQuestions.classList.add("form-control");
+        numQuestions.classList.add("font-sm");
         numQuestions.onchange = numQuestionsChangeHandler
 
         container.appendChild(attrLabel);
@@ -72,7 +76,7 @@ const chooseSubjectForExam = function (e) {
         var numberInput = document.getElementById("myNumberInput");
 
         numQuestions.addEventListener("change", function (event) {
-          numQuestionsChangeHandler()
+          numQuestionsChangeHandler(event)
         });
 
         chapterSelect.appendChild(chHeader);
@@ -86,17 +90,22 @@ const chooseSubjectForExam = function (e) {
           attrLabel.innerText = chapter.name;
           attrLabel.classList.add("btn");
           attrLabel.classList.add("btn-dark");
-          attrLabel.style.width = "200px";
+          attrLabel.classList.add("font-sm");
+          attrLabel.classList.add("width-sm");
 
           container.classList.add("input-group");
           container.classList.add("my-1");
           inputChapter.name = chapter.id;
+          inputChapter.id = chapter.id;
+          attrLabel.setAttribute("for", chapter.id);
+
           inputChapter.placeholder = "Number of questions";
           inputChapter.required = true;
           inputChapter.type = "number";
           inputChapter.value = "0";
           inputChapter.max = numQuestions.value;
           inputChapter.classList.add("form-control");
+          inputChapter.classList.add("font-sm");
           inputChapter.addEventListener("change", function (event) {
             chapterChangeHandlerForInputs(event)
           });

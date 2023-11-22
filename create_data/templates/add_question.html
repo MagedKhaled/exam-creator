@@ -1,12 +1,12 @@
 {% extends 'layouts/base.html' %} {% load static %} {% block title %} Subject
 Creator {% endblock %} {% block body %}
 
-<form method="post">
+<form method="post" class="">
   {% csrf_token %}
   <h2 class="py-5">Create Question</h2>
 
   <div class="">
-    <select class="form-select" name="subject" id="subjectName" onchange="chooseSubject(event)" required>
+    <select class="form-select select-font-sm" name="subject" id="subjectName" onchange="chooseSubject(event)" required>
         <option selected value="">Subject Name</option>
       {% for subject in subjects %}
       
@@ -16,7 +16,7 @@ Creator {% endblock %} {% block body %}
   </div>
 
   <div class="">
-    <select class="form-select" name="chapter" id="chapterName" hidden required>
+    <select class="form-select select-font-sm" name="chapter" id="chapterName" hidden required>
         <option selected value="">Chapter name</option>
     </select>
   </div>
@@ -24,7 +24,7 @@ Creator {% endblock %} {% block body %}
   <div class="py-4">
     <textarea
     style="resize: both; width:100%;"
-      class="form-text d-block"
+      class="form-text d-block font-sm"
       name="question"
       id="question"
       rows="3"
@@ -35,7 +35,7 @@ Creator {% endblock %} {% block body %}
 
   <div class="py-4">
     <input
-      class="form-control"
+      class="form-control  font-sm"
       type="text"
       id="true_answer"
       name="true_answer"
@@ -47,14 +47,14 @@ Creator {% endblock %} {% block body %}
   <div id="wrong_answer_container" class="form-control">
     <div class="input-group mb-3">
       <input
-        class="form-control"
+        class="form-control  font-sm"
         id="wrong_answer"
         type="text"
         placeholder="Wrong answer"
       />
         <button
 
-          class="btn btn-dark rounded-end-2"
+          class="btn btn-dark rounded-end-2 font-sm"
           type="button"
           onclick="addAnswer(event)"
         >
@@ -65,7 +65,7 @@ Creator {% endblock %} {% block body %}
   </div>
 
   <div class="my-4">
-    <select class="form-select" name="difficulty" id="difficulty" required>
+    <select class="form-select select-font-sm" name="difficulty" id="difficulty" required>
     <option selected value="">Choose Difficulty</option>
       <option value="s">simple</option>
       <option value="d">difficult</option>
@@ -73,7 +73,7 @@ Creator {% endblock %} {% block body %}
   </div>
 
   <div class="my-4">
-    <select class="form-select" name="objective" id="objective" required>
+    <select class="form-select select-font-sm" name="objective" id="objective" required>
         <option selected value="">Choose Objective</option>
 
       <option value="r">reminding</option>
@@ -92,7 +92,7 @@ Creator {% endblock %} {% block body %}
   </div>
 
   <center>
-    <button class="btn btn-dark mb-5 mt-4 px-5" onclick="handleAddQuestion(event)">Add Question</button>
+    <button class="btn btn-dark mb-5 mt-4 px-5 font-sm" onclick="handleAddQuestion(event)">Add Question</button>
   </center>
 </form>
 

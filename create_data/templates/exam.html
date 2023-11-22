@@ -4,7 +4,7 @@ Creator {% endblock %}
 {% block body %}
 <div class="my-5">
   <h3>Score</h3>
-  <table class="table text-center table-striped table-bordered">
+  <table class="table text-center table-striped table-bordered font-sm mb-0">
     <thead class="table-dark">
       <tr>
         <th scope="col">#</th>
@@ -43,22 +43,28 @@ Creator {% endblock %}
       </tr>
     </tbody>
   </table>
+
+
+ <form action="/create/retry/exam/" method="post" class="m-auto d-flex justify-content-end flex-column">
+  {% csrf_token %}
+  <input name="treeIndex" type="text" value="{{treeIndex}}"hidden>
+    <button class="btn btn-dark text-right rounded-top-0" >Improve</button>
+ </form>
+
 </div>
 
 {% endblock %}
 
 {% block show %}
 <div class="form-control w-75 m-auto mt-5 px-5">
-  
-
   <div class="my-5">
   <h3>Exam</h3>
 
     {% for question in questions %}
-    <li class="form-control mb-5">
-      <div class="d-flex flex-row justify-content-between m-3">
-        <div class="w-75">
-          <h5>{{question.0.content}}</h5>
+    <li class="form-control mb-5 container">
+      <div class="row m-3">
+        <div class="col col-12 col-lg-8 font-sm">
+          <h5 class="font-sm" >{{question.0.content}}</h5>
           <div>
             <ul>
               {% for choice in question.1 %} 
@@ -70,8 +76,8 @@ Creator {% endblock %}
             </ul>
           </div>
         </div>
-        <div class="w-25">
-          <table class="table table-bordered">
+        <div class="col col-12 col-lg-4">
+          <table class="table table-bordered font-sm">
             <tr>
               <th scope="col">Chapter</th>
               <td>{{question.0.chapter.name}}</td>

@@ -39,7 +39,7 @@ const chapterChangeHandlerForInputs = (event) => {
     const numQuestions = document.getElementById('totalQuestions').value
     const inputChapter = event.target
     
-    if (inputChapter.value === "") {
+    if (inputChapter.value === "" || inputChapter.value.includes('e')) {
         inputChapter.value = "0";
         } else if (parseInt(inputChapter.value) < 0) {
         inputChapter.value = "0";
@@ -86,7 +86,7 @@ const difficultyChangeHandlerForInputs = (event) => {
     const numQuestions = document.getElementById('totalQuestions').value
     const inputChapter = event.target
     
-    if (inputChapter.value === "") {
+    if (inputChapter.value === "" || inputChapter.value.includes('e')) {
         inputChapter.value = "0";
         } else if (parseInt(inputChapter.value) < 0) {
         inputChapter.value = "0";
@@ -108,8 +108,7 @@ const objectiveChangeHandler = () => {
     const objectiveContainer = document.getElementById('objectiveContainer')    
     
     const inputElements = objectiveContainer.querySelectorAll('input')
-    console.log(objectiveContainer)
-    console.log(inputElements)
+
     inputElements[0].max = numQuestions
     inputElements[1].max = numQuestions
     inputElements[2].value = numQuestions - inputElements[0].value - inputElements[1].value
@@ -138,7 +137,7 @@ const objectiveChangeHandlerForInputs = (event) => {
     const numQuestions = document.getElementById('totalQuestions').value
     const inputChapter = event.target
     
-    if (inputChapter.value === "") {
+    if (inputChapter.value === "" || inputChapter.value.includes('e')) {
         inputChapter.value = "0";
         } else if (parseInt(inputChapter.value) < 0) {
         inputChapter.value = "0";

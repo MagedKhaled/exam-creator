@@ -31,13 +31,10 @@ def createQuestions(questions,chapters):
 
 def createTree(number_questions,exam_requirements,number_nodes=100,number_inherit=200):
     
-    Tree.number_nodes = number_nodes
-    Tree.number_questions = number_questions
-    tree = Tree(exam_requirements)
+    tree = Tree(exam_requirements,number_nodes,number_questions)
     tree.startInherit(number_inherit)
-    tree.printTree()
-
-    return tree.rootNode.rate.getRealScore()
+    x,y,z,u = tree.rootNode.rate.getRealScore()
+    return x,y,z,u,tree
 
     
 
