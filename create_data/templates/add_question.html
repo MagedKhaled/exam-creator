@@ -1,13 +1,13 @@
 {% extends 'layouts/base.html' %} {% load static %} {% block title %} Subject
 Creator {% endblock %} {% block body %}
 
-<form method="post" class="form-control m-auto mt-5 px-5 w-50">
+<form method="post">
   {% csrf_token %}
-  <h1 class="mb-5">Create Question</h1>
+  <h2 class="py-5">Create Question</h2>
 
   <div class="">
     <select class="form-select" name="subject" id="subjectName" onchange="chooseSubject(event)" required>
-        <option selected value="">subject name</option>
+        <option selected value="">Subject Name</option>
       {% for subject in subjects %}
       
       <option value={{subject.id}}>{{subject.name}}</option>
@@ -54,7 +54,7 @@ Creator {% endblock %} {% block body %}
       />
         <button
 
-          class="btn btn-secondary"
+          class="btn btn-dark rounded-end-2"
           type="button"
           onclick="addAnswer(event)"
         >
@@ -92,7 +92,7 @@ Creator {% endblock %} {% block body %}
   </div>
 
   <center>
-    <button class="btn btn-secondary mb-5 mt-4 px-5" onclick="handleAddQuestion(event)">Add Question</button>
+    <button class="btn btn-dark mb-5 mt-4 px-5" onclick="handleAddQuestion(event)">Add Question</button>
   </center>
 </form>
 

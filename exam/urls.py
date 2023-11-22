@@ -18,8 +18,11 @@ from django.contrib import admin
 from django.urls import path,include
 from django.conf.urls.static import static
 from exam import settings
+from create_data.views import create_exam
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('create/',include('create_data.urls'))
+    path('create/',include('create_data.urls')),
+    path('',create_exam,name='create.exam'),
+
 ]

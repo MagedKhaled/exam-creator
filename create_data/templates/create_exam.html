@@ -1,13 +1,13 @@
 {% extends 'layouts/base.html' %} {% load static %} {% block title %} Subject
 Creator {% endblock %} {% block body %}
 
-<form method="post" class="form-control m-auto mt-5 px-5 w-50">
+<form method="post" class="pb-5" >
   {% csrf_token %}
-  <h1 class="mb-5">Create Exam</h1>
+  <h2 class="py-5">Create Exam</h2>
 
   <div class="">
     <select class="form-select" name="subject" id="subjectName" onchange="chooseSubjectForExam(event)" required>
-        <option selected value="">subject name</option>
+        <option selected value="">Subject Name</option>
       {% for subject in subjects %}
       
       <option value={{subject.id}}>{{subject.name}}</option>
@@ -15,43 +15,43 @@ Creator {% endblock %} {% block body %}
     </select>
   </div>
 
-  <div class="mt-5">
-    <div class="" name="chapter" id="chapterNameForExam" hidden required>
+  <div class="mt-5" id="chapterContainerForExam" hidden>
+    <div class="" name="chapter" id="chapterNameForExam" >
     </div>
   </div>
 
 
 
 <div id="attributesContainerForExam" hidden>
-  <div>
-    <h3 class="mt-5">Difficulty: </h3>
+  <div id="difficultyContainer">
+    <h4 class="mt-5">Difficulty: </h4>
     <div class="input-group my-1">
-      <button class="btn btn-secondary" style="width: 200px;">Difficult</button>
-      <input name="d" type="number" class="form-control" placeholder="Number of questions">
+      <label for="d" class="btn btn-dark" style="width: 200px;">Difficult</label>
+      <input id="d" name="d" type="number" class="form-control" placeholder="Number of questions" onchange="difficultyChangeHandlerForInputs(event)" value="0">
     </div>
   
     <div class="input-group">
-      <button class="btn btn-secondary" style="width: 200px;">Simple</button>
-      <input name="s" type="number" class="form-control" placeholder="Number of questions">
+      <label for="s" class="btn btn-dark" style="width: 200px;">Simple</label>
+      <input id="s" name="s" type="number" class="form-control" placeholder="Number of questions" readonly>
     </div>
   
   </div>
   
-  <div>
-    <h3 class="mt-5">Objective: </h3>
+  <div id="objectiveContainer">
+    <h4 class="mt-5">Objective: </h4>
     <div class="input-group my-1">
-      <button class="btn btn-secondary" style="width: 200px;">Reminding</button>
-      <input name="r" type="number" class="form-control" placeholder="Number of questions">
+      <label for="r" class="btn btn-dark" style="width: 200px;">Reminding</label>
+      <input id="r" name="r" type="number" class="form-control" placeholder="Number of questions" onchange="objectiveChangeHandlerForInputs(event)" value="0">
     </div>
   
     <div class="input-group my-1">
-      <button class="btn btn-secondary" style="width: 200px;">Understanding</button>
-      <input name="u" type="number" class="form-control" placeholder="Number of questions">
+      <label for="u" class="btn btn-dark" style="width: 200px;">Understanding</label>
+      <input id="u" name="u" type="number" class="form-control" placeholder="Number of questions" onchange="objectiveChangeHandlerForInputs(event)" value="0">
     </div>
   
     <div class="input-group my-1">
-      <button class="btn btn-secondary" style="width: 200px;">Creative</button>
-      <input name="c" type="number" class="form-control" placeholder="Number of questions">
+      <label for="c" class="btn btn-dark" style="width: 200px;">Creative</label>
+      <input id="c" name="c" type="number" class="form-control" placeholder="Number of questions" readonly>
     </div>
   
   </div>
@@ -66,7 +66,7 @@ Creator {% endblock %} {% block body %}
     </div>
 
     <center>
-      <button class="btn btn-secondary mb-5 mt-5 px-5">Create Exam</button>
+      <button id="createExamButton" class="btn btn-dark mb-5 mt-5 px-5">Create Exam</button>
     </center>
 </div>
 

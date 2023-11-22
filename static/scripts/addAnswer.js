@@ -43,21 +43,21 @@ const addAnswer = function (e) {
       cloneElement.children[0].value = "";
       parentContainer.appendChild(cloneElement);
     } else {
-      originalElement.children[2].innerText = "This chapter is added before ";
+      originalElement.children[2].innerText = "This answer is added before ";
     }
   } else {
     originalElement.children[2].innerText =
-      "chapter name must be at least 1 characters ";
+      "answer must be at least 1 characters ";
   }
 };
 
 const chooseSubject = function (e) {
   subject = document.getElementById("subjectName").value;
   chapterSelect = document.getElementById("chapterName");
+  chapterSelect.classList.add('mt-3')
 
   url = `/create/get/chapters/${subject}/`;
 
-  console.log("subject", subject);
 
   if (subject) {
     fetch(url, {
@@ -74,6 +74,7 @@ const chooseSubject = function (e) {
       })
       .then((data) => {
         chapterSelect.innerHTML = "";
+        chapterSelect.classList.add = "mt-3";
         const option = document.createElement("option");
         option.value = "";
         option.textContent = "Chapter Name";
@@ -89,7 +90,7 @@ const chooseSubject = function (e) {
         chapterSelect.hidden = false;
       })
       .catch((error) => {
-        console.error("There are error with this subject:", error);
+        console.error("There are error with this question:", error);
       });
   } else {
     chapterSelect.hidden = true;

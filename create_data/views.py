@@ -102,10 +102,15 @@ def create_exam(request):
             questionsStates[str(question.chapter.id)][0] += 1
 
         createQuestions(questions,chaptersToSend)
-        realSore,rate,totalScore,questions = createTree(int(request.POST.get('totalQuestions')),examData,number_nodes=100,number_inherit=200)
+        realScore,rate,totalScore,questions = createTree(int(request.POST.get('totalQuestions')),examData,number_nodes=100,number_inherit=200)
         questionData = []
         for question in questions:
-            questionData.append(Question.objects.get(id=question.id))
+            quest = Question.objects.get(id=question.id)
+            choices = list(quest.Choices.all())
+            random.shuffle(choices)
+            questionData.append(
+                [quest,choices]
+                )
 
         
         for key in questionsStates.keys():
@@ -113,18 +118,8 @@ def create_exam(request):
             questionsStates[key][2] = examData[key]
 
 
-        print('*********question states****************')
-        print(questionsStates)
-        print('*********rate Data****************')
-        print(rate)
-        print('*********exam Data****************')
-        print(examData)
-        print('**********total score***************')
-        print(totalScore)
-
         return(render(request,'exam.html',context={'questions':questionData,'score':totalScore,'question_states':questionsStates}))
         
-
     return(render(request,'create_exam.html',context={'subjects':subjects}))
 
 
@@ -134,7 +129,7 @@ def createRandomQuestions(request):
     objective = ['r','u','c']
 
     chapter = Chapter.objects.all()
-    for i in range(10000):
+    for i in range(10):
         question = Question()
         question.content = fake.text(150)
         question.difficulty = random.choice(difficulty)
